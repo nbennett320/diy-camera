@@ -1,9 +1,9 @@
 #pragma once
 
-#include <vector>
+#include <array>
 #include <string>
 
 namespace util {
-  std::vector<unsigned char> hex_to_rgb(unsigned int hex);
+  std::array<unsigned char, 3> hex_to_rgb(unsigned int hex);
 };
 

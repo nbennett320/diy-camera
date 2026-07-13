@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <vector>
+#include <array>
 
 #include "camera.hpp"
 #include "util.hpp"
@@ -63,9 +63,9 @@ int main(int argc, char* argv[]) {
       // starting memory position for pixel
       int idx = (y * w + x) * channels;
 
-      std::vector<unsigned char> c1 = util::hex_to_rgb(0x000022);
-      std::vector<unsigned char> c2 = util::hex_to_rgb(0xE28413);
-      std::vector<unsigned char> c3 = util::hex_to_rgb(0xFBF5F3);
+      std::array<unsigned char, 3> c1 = util::hex_to_rgb(0xa4303f);
+      std::array<unsigned char, 3> c2 = util::hex_to_rgb(0xb4c794);
+      std::array<unsigned char, 3> c3 = util::hex_to_rgb(0xffeccc);
 
       // get rgb values
       unsigned char r = img_data[idx + 0];
@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
         img_data[idx + 1] = c1[1];
         img_data[idx + 2] = c1[2];
       }
-      else if(gray < 200) {
+      else if(gray < 170) {
         img_data[idx + 0] = c2[0];
         img_data[idx + 1] = c2[1];
         img_data[idx + 2] = c2[2];
