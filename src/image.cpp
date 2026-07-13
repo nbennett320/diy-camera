@@ -38,35 +38,7 @@ void image::buffer_pixel_matrix() {
 void image::apply_bw_filter() {
   for (int y = 0; y < h; y++) {
     for (int x = 0; x < w; x++) {
-      // starting memory position for pixel
-      int idx = (y * w + x) * channels;
-
-      std::array<unsigned char, 3> c1 = util::hex_to_rgb(0xa4303f);
-      std::array<unsigned char, 3> c2 = util::hex_to_rgb(0xb4c794);
-      std::array<unsigned char, 3> c3 = util::hex_to_rgb(0xffeccc);
-
-      // get rgb values
-      unsigned char r = raw_data[idx + 0];
-      unsigned char g = raw_data[idx + 1];
-      unsigned char b = raw_data[idx + 2];
-
-      // modify rgb values
-      unsigned char gray = static_cast<unsigned char>(0.2126 * r + 0.7152 * g + 0.0722 * b);
-      // if(gray < 85) {
-      //   img_data[idx + 0] = c1[0];
-      //   img_data[idx + 1] = c1[1];
-      //   img_data[idx + 2] = c1[2];
-      // }
-      // else if(gray < 170) {
-      //   img_data[idx + 0] = c2[0];
-      //   img_data[idx + 1] = c2[1];
-      //   img_data[idx + 2] = c2[2];
-      // }
-      // else {
-      //   img_data[idx + 0] = c3[0];
-      //   img_data[idx + 1] = c3[1];
-      //   img_data[idx + 2] = c3[2];
-      // }
+      #include "filters/bw.inc"
     }
   }
 

@@ -50,7 +50,8 @@ int main(int argc, char* argv[]) {
   
   std::cout <<"works\n";
 
-  cam.img.apply_tritone_filter(0xa4303f, 0xb4c794, 0xffeccc);
+  cam.img.apply_bw_filter();
+  // cam.img.apply_tritone_filter(0xa4303f, 0xb4c794, 0xffeccc);
   cam.set_output_filename("output.jpg");
   cam.write_jpg();
 
