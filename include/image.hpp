@@ -21,6 +21,12 @@ class image {
 
   void load(unsigned char* data);
 
-  // private:
+  // ----- filters ----- 
+  void apply_bw_filter();
+  void apply_tritone_filter(int dark, int midtone, int light);
+
+  private:
+
+  void buffer_pixel_matrix();
 
 };

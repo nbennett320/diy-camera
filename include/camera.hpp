@@ -7,6 +7,8 @@
 class camera {
   public:
 
+  image img;
+
   camera();
 
   ~camera();
@@ -26,5 +28,4 @@ class camera {
 
   std::string input_filename;
   std::string output_filename = "output.jpg";
-  image img;
 };
