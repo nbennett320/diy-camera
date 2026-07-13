@@ -60,6 +60,20 @@ int main(int argc, char* argv[]) {
       // starting memory position for pixel
       int idx = (y * w + x) * channels;
 
+      // 101 145 87
+      unsigned char c1_r = 101;
+      unsigned char c1_g = 145;
+      unsigned char c1_b = 87;
+
+      // 135 180 192
+      unsigned char c2_r = 135;
+      unsigned char c2_g = 180;
+      unsigned char c2_b = 192;
+      // 255 202 177
+      unsigned char c3_r = 255;
+      unsigned char c3_g = 202;
+      unsigned char c3_b = 177;
+
       // get rgb values
       unsigned char r = img_data[idx + 0];
       unsigned char g = img_data[idx + 1];
@@ -67,9 +81,21 @@ int main(int argc, char* argv[]) {
 
       // modify rgb values
       unsigned char gray = static_cast<unsigned char>(0.2126 * r + 0.7152 * g + 0.0722 * b);
-      img_data[idx + 0] = gray;
-      img_data[idx + 1] = gray;
-      img_data[idx + 2] = gray;
+      if(gray < 85) {
+        img_data[idx + 0] = c1_r;
+        img_data[idx + 1] = c1_g;
+        img_data[idx + 2] = c1_b;
+      }
+      else if(gray < 170) {
+        img_data[idx + 0] = c2_r;
+        img_data[idx + 1] = c2_g;
+        img_data[idx + 2] = c2_b;
+      }
+      else {
+        img_data[idx + 0] = c3_r;
+        img_data[idx + 1] = c3_g;
+        img_data[idx + 2] = c3_b;
+      }
     }
   }
 

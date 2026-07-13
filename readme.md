@@ -13,7 +13,22 @@ make release # optimized release build
 make clean # clean up binaries 
 ```
 
+I usually clean the binaries and recompile
+like this: 
+```bash
+make clean && make -j8
+```
+
 ### how to run
 ```bash
 ./diy-camera -f ../test1.jpg
+```
+
+#### Arguments
+- `-f`, `--file`
+  - input file for debugging filters
+
+#### Example
+```bash
+./diy-camera --file ../test1.jpg
 ```
