@@ -26,6 +26,7 @@ class image {
   void apply_tritone_filter(int dark, int midtone, int light);
   void apply_pinktone_filter();
   void apply_pink_yellow_dream_filter();
+  void apply_frutiger_filter();
 
   private:
 

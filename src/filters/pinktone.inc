@@ -14,14 +14,12 @@ r = r * (1.0 - strength) + pink_r * strength;
 g = g * (1.0 - strength) + pink_g * strength;
 b = b * (1.0 - strength) + pink_b * strength;
 
-auto fade = [](double c)
-{
+auto fade = [](double c) {
   return c * 0.90 + 18;
 };
 
 double lum = (r + g + b) / 3.0;
-if (lum > 190)
-{
+if (lum > 190) {
   r += 15;
   b += 10;
 }

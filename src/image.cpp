@@ -75,3 +75,13 @@ void image::apply_pink_yellow_dream_filter() {
 
   buffer_pixel_matrix();
 }
+
+void image::apply_frutiger_filter() {
+  for (int y = 0; y < h; y++) {
+    for (int x = 0; x < w; x++) {
+      #include "filters/frutiger.inc"
+    }
+  }
+
+  buffer_pixel_matrix();
+}

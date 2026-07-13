@@ -1,13 +1,11 @@
 // starting memory position for pixel
 int idx = (y * w + x) * channels;
-constexpr double strength = 0.5;
 
 double r = raw_data[idx + 0];
 double g = raw_data[idx + 1];
 double b = raw_data[idx + 2];
 
-auto fade = [](double c)
-{
+auto fade = [](double c) {
   return c * 0.90 + 18;
 };
 
@@ -20,8 +18,7 @@ g = g * 0.95 + 12;
 b = b * 0.95 + 12;
 
 double lum = (r + g + b) / 3.0;
-if (lum > 190)
-{
+if (lum > 190) {
   r += 15;
   b += 10;
 }
