@@ -35,6 +35,7 @@ void image::buffer_pixel_matrix() {
   }
 }
 
+// ----- filters ----- 
 void image::apply_bw_filter() {
   for (int y = 0; y < h; y++) {
     for (int x = 0; x < w; x++) {
@@ -49,6 +50,26 @@ void image::apply_tritone_filter(int dark, int midtone, int light) {
   for (int y = 0; y < h; y++) {
     for (int x = 0; x < w; x++) {
       #include "filters/tritone.inc"
+    }
+  }
+
+  buffer_pixel_matrix();
+}
+
+void image::apply_pinktone_filter() {
+  for (int y = 0; y < h; y++) {
+    for (int x = 0; x < w; x++) {
+      #include "filters/pinktone.inc"
+    }
+  }
+
+  buffer_pixel_matrix();
+}
+
+void image::apply_pink_yellow_dream_filter() {
+  for (int y = 0; y < h; y++) {
+    for (int x = 0; x < w; x++) {
+      #include "filters/pink_yellow_dream.inc"
     }
   }
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <memory>
+#include <cmath>
 #include "pixel.hpp"
 
 class image {
@@ -24,6 +24,8 @@ class image {
   // ----- filters ----- 
   void apply_bw_filter();
   void apply_tritone_filter(int dark, int midtone, int light);
+  void apply_pinktone_filter();
+  void apply_pink_yellow_dream_filter();
 
   private:
 
