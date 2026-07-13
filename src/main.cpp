@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
+#include <vector>
+
 #include "camera.hpp"
+#include "util.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.hpp"
@@ -60,19 +63,9 @@ int main(int argc, char* argv[]) {
       // starting memory position for pixel
       int idx = (y * w + x) * channels;
 
-      // 101 145 87
-      unsigned char c1_r = 101;
-      unsigned char c1_g = 145;
-      unsigned char c1_b = 87;
-
-      // 135 180 192
-      unsigned char c2_r = 135;
-      unsigned char c2_g = 180;
-      unsigned char c2_b = 192;
-      // 255 202 177
-      unsigned char c3_r = 255;
-      unsigned char c3_g = 202;
-      unsigned char c3_b = 177;
+      std::vector<unsigned char> c1 = util::hex_to_rgb(0x000022);
+      std::vector<unsigned char> c2 = util::hex_to_rgb(0xE28413);
+      std::vector<unsigned char> c3 = util::hex_to_rgb(0xFBF5F3);
 
       // get rgb values
       unsigned char r = img_data[idx + 0];
@@ -82,19 +75,19 @@ int main(int argc, char* argv[]) {
       // modify rgb values
       unsigned char gray = static_cast<unsigned char>(0.2126 * r + 0.7152 * g + 0.0722 * b);
       if(gray < 85) {
-        img_data[idx + 0] = c1_r;
-        img_data[idx + 1] = c1_g;
-        img_data[idx + 2] = c1_b;
+        img_data[idx + 0] = c1[0];
+        img_data[idx + 1] = c1[1];
+        img_data[idx + 2] = c1[2];
       }
-      else if(gray < 170) {
-        img_data[idx + 0] = c2_r;
-        img_data[idx + 1] = c2_g;
-        img_data[idx + 2] = c2_b;
+      else if(gray < 200) {
+        img_data[idx + 0] = c2[0];
+        img_data[idx + 1] = c2[1];
+        img_data[idx + 2] = c2[2];
       }
       else {
-        img_data[idx + 0] = c3_r;
-        img_data[idx + 1] = c3_g;
-        img_data[idx + 2] = c3_b;
+        img_data[idx + 0] = c3[0];
+        img_data[idx + 1] = c3[1];
+        img_data[idx + 2] = c3[2];
       }
     }
   }
