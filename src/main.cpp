@@ -1,8 +1,11 @@
 #include <iostream>
 #include <string>
-#include "stb_image.hpp"
-#include "stb_image_write.hpp"
 #include "camera.hpp"
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.hpp"
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.hpp"
 
 void parse_args(int argc, char* argv[], camera &cam) {
   int i = 1;
@@ -34,10 +37,58 @@ int main(int argc, char* argv[]) {
   camera cam = camera();
 
   parse_args(argc, argv, cam);
-  
+
   #ifdef DEBUG
   std::cout << "camera file: " << cam.filename << "\n";
   #endif
+
+  int w = 1440;
+  int h = 1080;
+  int channels = 3; // rgb
+  unsigned char* img_data = stbi_load(cam.filename.c_str(), &w, &h, &channels, 0);
+
+  if (img_data == nullptr) {
+    std::cout << "welp :/\n";
+    return 1;
+  }
+
+  std::cout <<"works\n";
+
+  // iterate through image:
+  for (int y = 0; y < h; y++) {
+    for (int x = 0; x < w; x++) {
+      // starting memory position for pixel
+      int idx = (y * w + x) * channels;
+
+      // get rgb values
+      unsigned char r = img_data[idx + 0];
+      unsigned char g = img_data[idx + 1];
+      unsigned char b = img_data[idx + 2];
+
+      // modify rgb values
+      unsigned char gray = static_cast<unsigned char>(0.2126 * r + 0.7152 * g + 0.0722 * b);
+      img_data[idx + 0] = gray;
+      img_data[idx + 1] = gray;
+      img_data[idx + 2] = gray;
+    }
+  }
+
+  std::string output_filename = "output.jpg";
+  int quality = 90;
+
+  int write_success = stbi_write_jpg(
+    output_filename.c_str(), 
+    w, 
+    h, 
+    channels, 
+    img_data, 
+    quality
+  );
+
+  if (write_success == 0) {
+    std::cout << "it failed :/ \n";
+  }
+  stbi_image_free(img_data);
 
   return 0;
 }
