@@ -1,6 +1,8 @@
 #pragma once
 
 #include <cmath>
+#include <algorithm>
+#include <iostream>
 #include "pixel.hpp"
 
 class image {
@@ -21,12 +23,15 @@ class image {
 
   void load(unsigned char* data);
 
+  // unsigned char* data();
+
   // ----- filters ----- 
   void apply_bw_filter();
   void apply_tritone_filter(int dark, int midtone, int light);
-  void apply_pinktone_filter();
+  void apply_pinktone_filter(int amt);
   void apply_pink_yellow_dream_filter();
   void apply_frutiger_filter();
+  void apply_grain_filter(int amt);
 
   private:
 

@@ -5,5 +5,7 @@
 
 namespace util {
   std::array<unsigned char, 3> hex_to_rgb(unsigned int hex);
+
+  unsigned int fast_rand();
 };
 

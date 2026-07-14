@@ -24,6 +24,19 @@ void image::load(unsigned char* data) {
   buffer_pixel_matrix();
 }
 
+// unsigned char* image::data() {
+//   unsigned char* d = new unsigned char[w*h];
+
+//   int idx = 0;
+//   for(int i = 0; i < w*h; i++) {
+//     for(int j = 0; j < 3; j++) {
+//       d[idx] = pixels[i * w + j];
+//     }
+//   }
+
+//   return d;
+// }
+
 void image::buffer_pixel_matrix() {
   // populate pixels
   int n_pixels = w*h;
@@ -56,7 +69,7 @@ void image::apply_tritone_filter(int dark, int midtone, int light) {
   buffer_pixel_matrix();
 }
 
-void image::apply_pinktone_filter() {
+void image::apply_pinktone_filter(int amt) {
   for (int y = 0; y < h; y++) {
     for (int x = 0; x < w; x++) {
       #include "filters/pinktone.inc"
@@ -80,6 +93,16 @@ void image::apply_frutiger_filter() {
   for (int y = 0; y < h; y++) {
     for (int x = 0; x < w; x++) {
       #include "filters/frutiger.inc"
+    }
+  }
+
+  buffer_pixel_matrix();
+}
+
+void image::apply_grain_filter(int amt) {
+  for (int y = 0; y < h; y++) {
+    for (int x = 0; x < w; x++) {
+      #include "filters/grain.inc"
     }
   }
 

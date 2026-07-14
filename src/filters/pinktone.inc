@@ -1,6 +1,6 @@
 // starting memory position for pixel
 int idx = (y * w + x) * channels;
-constexpr double strength = 0.5;
+double strength = (double)amt / 100.0;
 
 double r = raw_data[idx + 0];
 double g = raw_data[idx + 1];
