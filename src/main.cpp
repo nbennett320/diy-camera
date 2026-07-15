@@ -9,18 +9,22 @@ void parse_args(int argc, char* argv[], camera &cam) {
   int i = 1;
 
   while (i < argc) {
+    #ifdef DEBUG
     std::cout << "arg[" << i << "]: " << argv[i] << "\n";
+    #endif
 
     std::string curr = argv[i];
-    if (curr == "-f" || curr == "--file") {
+    
+    // ~~~ input file ~~~
+    if (curr == "-i" || curr == "--input" || curr == "--file") {
       if (i+1 > argc) {
-        std::cout << "no file provided";
+        std::cout << "no input file provided";
         break;
       }
 
       char* next = argv[i+1];
       #ifdef DEBUG
-      std::cout << "loading file: " << next << "\n";
+      std::cout << "loading input file: " << next << "\n";
       #endif
       
       // set file to load
@@ -29,6 +33,7 @@ void parse_args(int argc, char* argv[], camera &cam) {
       i++;
     }
 
+    // ~~~ filter amount ~~~
     if (curr == "-a" || curr == "--amount") {
       if (i+1 > argc) {
         std::cout << "amount value not provided";
@@ -40,8 +45,24 @@ void parse_args(int argc, char* argv[], camera &cam) {
       std::cout << "amount value: " << next << "\n";
       #endif
       
-      // set file to load
       cam.set_filter_amount(next);
+
+      i++;
+    }
+
+    // ~~~ filter type ~~~
+    if (curr == "-f" || curr == "--filter") {
+      if (i+1 > argc) {
+        std::cout << "filter name not provided";
+        break;
+      }
+
+      char* next = argv[i+1];
+      #ifdef DEBUG
+      std::cout << "filter to be used: " << next << "\n";
+      #endif
+      
+      cam.set_filter(next);
 
       i++;
     }

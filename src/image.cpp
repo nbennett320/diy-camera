@@ -49,6 +49,10 @@ void image::buffer_pixel_matrix() {
 }
 
 // ----- filters ----- 
+// void image::apply_filter() {
+
+// }
+
 void image::apply_bw_filter() {
   for (int y = 0; y < h; y++) {
     for (int x = 0; x < w; x++) {

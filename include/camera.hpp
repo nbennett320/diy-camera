@@ -4,6 +4,7 @@
 #include <iostream>
 #include <random>
 #include "image.hpp"
+#include "filter_type.hpp"
 
 class camera {
   public:
@@ -29,9 +30,13 @@ class camera {
   inline void set_filter_amount(char* str) { filter_amount = std::stoi(std::string(str)); };
   inline int get_filter_amount() { return filter_amount; };
 
+  inline void set_filter(char* str) { filter = match_filter_type(std::string(str)); };
+  inline filter_type get_filter() { return filter; };
+
   private:
 
   std::string input_filename;
   std::string output_filename = "output.jpg";
   int filter_amount;
+  filter_type filter;
 };
