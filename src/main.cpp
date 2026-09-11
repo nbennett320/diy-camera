@@ -98,11 +98,14 @@ int main(int argc, char *argv[])
   std::cout << "works\n";
 
   // cam.img.apply_bw_filter();
-  cam.img.apply_tritone_filter(0xa4303f, 0xb4c794, 0xffeccc);
+  // cam.img.apply_tritone_filter(0xa4303f, 0xb4c794, 0xffeccc);
   // cam.img.apply_pinktone_filter(cam.get_filter_amount());
   // cam.img.apply_pink_yellow_dream_filter();
   // cam.img.apply_saturation_filter();
   // cam.img.apply_frutiger_filter();
+  // cam.img.apply_red_filter();
+  cam.img.apply_pixel_sort_filter(128, 255, false);
+  // cam.img.apply_halftone_filter(0xDA667B, 0xF1E0C5, cam.get_filter_amount());
   cam.img.apply_grain_filter(cam.get_filter_amount());
   cam.set_output_filename("output.jpg");
   cam.write_jpg();

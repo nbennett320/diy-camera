@@ -3,6 +3,8 @@
 #include <cmath>
 #include <algorithm>
 #include <iostream>
+#include <vector>
+#include <utility>
 #include "pixel.hpp"
 
 class image
@@ -33,6 +35,17 @@ public:
   void apply_frutiger_filter();
   void apply_grain_filter(int amt);
   void apply_saturation_filter();
+  void apply_red_filter();
+  void apply_halftone_filter(int dark, int light, int thresh);
+  void apply_pixel_sort_filter(int lo, int hi, bool vertical);
+
+  // ----- row/column processing engine -----
+  // shared building blocks for any effect that operates on a whole
+  // row or column at once instead of a single pixel. `vertical` selects
+  // whether `index` names a column (true) or a row (false).
+  std::vector<pixel> get_line(int index, bool vertical);
+  void set_line(int index, bool vertical, const std::vector<pixel> &line);
+  std::vector<std::pair<int, int>> find_runs(const std::vector<pixel> &line, int lo, int hi);
 
 private:
   void buffer_pixel_matrix();
